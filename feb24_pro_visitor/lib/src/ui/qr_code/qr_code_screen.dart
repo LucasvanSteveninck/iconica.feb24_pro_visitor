@@ -25,8 +25,10 @@ class QrCodeScreen extends StatelessWidget {
           if (snapshot.data == null) throw Exception();
           return Column(
             children: [
-              Text('Hello ${snapshot.data!['fullname']}', style: const TextStyle(color: Colors.white)),
-              Text('Your score is ${snapshot.data!['score']}', style: const TextStyle(color: Colors.white)),
+              Text('Hello ${snapshot.data!['fullname']}',
+                  style: const TextStyle(color: Colors.white)),
+              Text('Your score is ${snapshot.data!['score']}',
+                  style: const TextStyle(color: Colors.white)),
               TextButton(
                 onPressed: () =>
                     navigatorState.pushReplacementNamed('/overview'),

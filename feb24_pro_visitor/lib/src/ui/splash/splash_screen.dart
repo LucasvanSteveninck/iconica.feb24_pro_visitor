@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -9,7 +8,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -26,10 +24,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/qr-society-logo.jpg'), 
-            const SizedBox(height: 20), 
+            Image.asset('assets/qr-society-logo.jpg'),
+            const SizedBox(height: 20),
             const Text(
-              'App name', 
+              'App name',
               style: TextStyle(
                 fontSize: 32,
                 height: 1.25,

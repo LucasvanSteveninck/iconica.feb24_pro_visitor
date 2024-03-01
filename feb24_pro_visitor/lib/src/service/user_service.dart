@@ -17,4 +17,14 @@ class UserService {
     if (result == null) throw Exception();
     return result as Map<String, dynamic>;
   }
+
+  Future<void> deleteUserCurrentLocation(String userUid) async {
+    try {
+      await databaseRef.collection('users').doc(userUid).update({
+        'current-location': FieldValue.delete(),
+      });
+    } catch (e) {
+      throw Exception('Failed to delete current location');
+    }
+  }
 }

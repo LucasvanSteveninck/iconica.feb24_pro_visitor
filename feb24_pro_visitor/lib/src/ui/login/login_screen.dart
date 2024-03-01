@@ -76,7 +76,7 @@ class LoginScreen extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {},
-              child: const Text('Create account',
+              child: const Text('Create account.',
                   style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ],

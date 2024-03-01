@@ -1,3 +1,4 @@
+import 'package:feb24_pro_visitor/src/ui/login/test_stream.dart';
 import 'package:feb24_pro_visitor/src/ui/qr_code/qr_code_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,8 +14,8 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  FirebaseAuth.instance
-      .signInWithEmailAndPassword(email: 'a@gmail.com', password: '123jkl');
+  //FirebaseAuth.instance
+  //    .signInWithEmailAndPassword(email: 'a@gmail.com', password: '123jkl');
   runApp(const MyApp());
 }
 
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         '/': (context) => QrCodeScreen(),
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
+        '/qr-code': (context) => QrCodeScreen(),
+
       },
     );
   }

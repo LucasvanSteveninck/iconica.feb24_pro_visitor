@@ -1,4 +1,5 @@
-import 'package:feb24_pro_visitor/ui/splash/splash_screen.dart';
+import 'package:feb24_pro_visitor/src/ui/splash/splash_Screen.dart';
+import 'package:feb24_pro_visitor/theme/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,10 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Your App Title',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(), 
+      theme: customTheme,
+      home: const SplashScreen(), 
     );
   }
 }

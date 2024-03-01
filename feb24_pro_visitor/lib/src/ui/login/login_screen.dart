@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
-        padding: const EdgeInsets.only(top: 220.0, left: 60.0, right: 60.0, bottom: 60.0),
+        padding: const EdgeInsets.only(top: 100.0, left: 60.0, right: 60.0, bottom: 60.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[

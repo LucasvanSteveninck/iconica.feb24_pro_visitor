@@ -13,6 +13,7 @@ class QrCodeScreen extends StatelessWidget {
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception(); //TODO REROUTE
     NavigatorState navigatorState = Navigator.of(context);
+    ThemeData theme = Theme.of(context);
     return Scaffold(
         body: FutureBuilder(
       future: userService.getUser(user.uid),
@@ -23,32 +24,98 @@ class QrCodeScreen extends StatelessWidget {
           return Text('Error: ${snapshot.error}');
         } else {
           if (snapshot.data == null) throw Exception();
-          return Column(
-            children: [
-              Text('Hello ${snapshot.data!['fullname']}',
-                  style: const TextStyle(color: Colors.white)),
-              Text('Your score is ${snapshot.data!['score']}',
-                  style: const TextStyle(color: Colors.white)),
-              TextButton(
-                onPressed: () =>
-                    navigatorState.pushReplacementNamed('/overview'),
-                child: const Text('Go to overview >'),
-              ), //TODO update route once overview page exists
-              QrImageView(data: user.uid, size: 800),
-              ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(
-                        Icons.logout,
+          return Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Spacer(flex: 4),
+                Text(
+                  'Hi ${snapshot.data!['fullname']}',
+                  style: const TextStyle(
+                    fontFamily: 'Avenir',
+                    color: Color.fromRGBO(250, 249, 246, 1),
+                    fontWeight: FontWeight.w800,
+                    fontSize: 28,
+                  ),
+                ),
+                const Spacer(flex: 1),
+                Row(
+                  children: [
+                    const Spacer(flex: 80),
+                    const Text(
+                      'Your score is',
+                      style: TextStyle(
+                        fontFamily: 'Avenir',
+                        color: Color.fromRGBO(250, 249, 246, 1),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
                       ),
-                      Text('Log out')
-                    ],
-                  )),
-            ],
+                    ),
+                    const Spacer(flex: 1),
+                    ConstrainedBox(
+                      constraints:
+                          const BoxConstraints(maxHeight: 30, maxWidth: 100),
+                      child: Text(
+                        '${snapshot.data!['score']}',
+                        style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontSize: 24,
+                          fontFamily: 'Avenir',
+                          fontWeight: FontWeight.w800,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const Spacer(flex: 80),
+                  ],
+                ),
+                TextButton(
+                  onPressed: () =>
+                      navigatorState.pushReplacementNamed('/overview'),
+                  child: Text(
+                    'Go to overview >',
+                    style: TextStyle(
+                        color: Colors.grey[700],
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.grey[700]),
+                  ),
+                ), //TODO update route once overview page exists
+                const Spacer(flex: 3),
+                QrImageView(
+                  backgroundColor: Colors.white,
+                  data: user.uid,
+                  size: 350,
+                ),
+
+                const Spacer(flex: 8),
+                SizedBox(
+                  width: 150,
+                  child: TextButton(
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        navigatorState.pushReplacementNamed('/login');
+                      },
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.logout,
+                            color: Color.fromRGBO(250, 249, 246, 1),
+                          ),
+                          Text(
+                            'Log out',
+                            style: TextStyle(
+                                color: Color.fromRGBO(250, 249, 246, 1),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                fontFamily: 'Avenir'),
+                          ),
+                        ],
+                      )),
+                ),
+                const Spacer(flex: 1),
+              ],
+            ),
           );
         }
       },

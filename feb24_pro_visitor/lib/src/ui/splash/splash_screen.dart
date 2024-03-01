@@ -26,10 +26,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('qr-society-logo.jpg'), 
+            Image.asset('assets/qr-society-logo.jpg'), 
             const SizedBox(height: 20), 
             const Text(
-              'App name', 
+              'QR Society', 
               style: TextStyle(
                 fontSize: 32,
                 height: 1.25,

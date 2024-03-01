@@ -91,8 +91,9 @@ class QrCodeScreen extends StatelessWidget {
                 SizedBox(
                   width: 150,
                   child: TextButton(
-                      onPressed: () {
-                        FirebaseAuth.instance.signOut();
+                      onPressed: () async {
+                        await FirebaseAuth.instance.signOut();
+                        navigatorState.pushReplacementNamed('/login');
                       },
                       child: const Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

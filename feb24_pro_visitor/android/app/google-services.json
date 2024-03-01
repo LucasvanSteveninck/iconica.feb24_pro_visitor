@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "879720432733",
+    "project_id": "pro-bouncer",
+    "storage_bucket": "pro-bouncer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879720432733:android:a5ec6c876fac6554d9f9b4",
+        "android_client_info": {
+          "package_name": "app.iconica.feb24_proclub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv56I4Az4GuTw9RbO3E6J89WOTC1zHV7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:879720432733:android:c1c4949043dc0735d9f9b4",
+        "android_client_info": {
+          "package_name": "com.example.feb24_pro_visitor"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv56I4Az4GuTw9RbO3E6J89WOTC1zHV7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

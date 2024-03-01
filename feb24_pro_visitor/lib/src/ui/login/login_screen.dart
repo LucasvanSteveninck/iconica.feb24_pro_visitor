@@ -5,6 +5,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NavigatorState navigatorState = Navigator.of(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
@@ -64,7 +65,9 @@ class LoginScreen extends StatelessWidget {
                 style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Theme.of(context).colorScheme.primary),
-                onPressed: () {},
+                onPressed: () {
+                  navigatorState.pushReplacementNamed('/');
+                },
                 child: const Text(
                   'Log In',
                   style: TextStyle(

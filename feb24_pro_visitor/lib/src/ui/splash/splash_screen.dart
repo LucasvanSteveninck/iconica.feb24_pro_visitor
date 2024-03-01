@@ -1,4 +1,3 @@
-import 'package:feb24_pro_visitor/src/ui/login/login_screen.dart';
 import 'package:flutter/material.dart';
 
 
@@ -15,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+      Navigator.pushReplacementNamed(context, '/login');
     });
   }
 

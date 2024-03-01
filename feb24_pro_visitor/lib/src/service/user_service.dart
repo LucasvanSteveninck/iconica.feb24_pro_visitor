@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class UserService {
   static final userServiceInstance = UserService._();
@@ -25,6 +26,16 @@ class UserService {
       });
     } catch (e) {
       throw Exception('Failed to delete current location');
+    }
+  }
+
+  Future<bool> login(String email, String password) async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      return true;
+    } on FirebaseAuthException catch (e) {
+      return false;
     }
   }
 }

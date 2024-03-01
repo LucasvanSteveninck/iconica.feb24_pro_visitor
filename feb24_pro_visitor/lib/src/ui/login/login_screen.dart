@@ -23,8 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _login() async {
     final String email = _emailController.text;
     final String password = _passwordController.text;
-    if (await userService.login(email, password))
-    {
+    if (await userService.login(email, password)) {
       Navigator.pushReplacementNamed(context, '/qr-code');
     }
   }
@@ -34,73 +33,86 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: Padding(
-        padding: const EdgeInsets.all(32.0),
+        padding: const EdgeInsets.only(top: 220.0, left: 60.0, right: 60.0, bottom: 60.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            const Text(
+            Text(
               'Log in',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32.0,
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: Color(0xFFFAF9F6),
+                    fontSize: 32.0,
+                    fontWeight: FontWeight.bold,
+                  ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 48.0),
-            TextFormField(
-              controller: _emailController,
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                hintText: 'Email address',
-                hintStyle: TextStyle(color: Colors.white),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+            Container(
+              height: 40, 
+              child: TextFormField(
+                controller: _emailController,
+                style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: Color(0xFFFAF9F6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                decoration: const InputDecoration(
+                  
+                  hintText: 'Email address',
+                  hintStyle: TextStyle(color: Color(0xFFFAF9F6)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFAF9F6)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFAF9F6)),
+                  ),
+                  
+                  contentPadding: EdgeInsets.only(left: 12, top: 10, bottom: 10), 
                 ),
               ),
             ),
             const SizedBox(height: 16.0),
-            TextFormField(
-              controller: _passwordController,
-              style: const TextStyle(color: Colors.white),
-              obscureText: true,
-              decoration: const InputDecoration(
-                hintText: 'Password',
-                hintStyle: TextStyle(color: Colors.white),
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+            Container(
+              height: 40, 
+              child: TextFormField(
+                controller: _passwordController,
+                                style: Theme.of(context).textTheme.headline6?.copyWith(
+                    color: Color(0xFFFAF9F6),
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Password',
+                  hintStyle: TextStyle(color: Color(0xFFFAF9F6)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFAF9F6)),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFFAF9F6)),
+                  ),
+                  suffixIcon: Icon(Icons.visibility_off,
+                      color: Color(0xFFFAF9F6)),
+                  contentPadding: EdgeInsets.only(left: 12, top: 10, bottom: 10), 
                 ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
-                ),
-                suffixIcon: Icon(Icons.visibility_off, color: Colors.white),
               ),
             ),
-            const SizedBox(height: 24.0),
+            const SizedBox(height: 50.0),
             SizedBox(
               width: 250,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Theme.of(context).colorScheme.primary),
-                onPressed:
-                    _login, 
+                    foregroundColor: const Color(0xFFFAF9F6),
+                    backgroundColor: const Color(0xFFC57CFF)),
+                onPressed: _login,
                 child: const Text(
-                  'Log In',
+                  'Log in',
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
               ),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text('Create account.',
-                  style: TextStyle(color: Colors.white, fontSize: 16)),
             ),
           ],
         ),

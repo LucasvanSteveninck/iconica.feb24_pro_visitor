@@ -11,10 +11,10 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Image.asset('assets/qr-society-logo.jpg'), 
-            const SizedBox(height: 20), 
+            Image.asset('assets/qr-society-logo.jpg'),
+            const SizedBox(height: 20),
             const Text(
-              'App name', 
+              'App name',
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

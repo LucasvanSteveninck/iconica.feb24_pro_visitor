@@ -13,7 +13,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  FirebaseAuth.instance
+  await FirebaseAuth.instance
       .signInWithEmailAndPassword(email: 'a@gmail.com', password: '123jkl');
   runApp(const MyApp());
 }

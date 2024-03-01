@@ -29,7 +29,6 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
         '/qr-code': (context) => QrCodeScreen(),
-
       },
     );
   }

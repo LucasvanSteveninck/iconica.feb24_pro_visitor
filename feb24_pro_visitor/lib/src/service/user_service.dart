@@ -34,7 +34,7 @@ class UserService {
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
       return true;
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException catch (_) {
       return false;
     }
   }

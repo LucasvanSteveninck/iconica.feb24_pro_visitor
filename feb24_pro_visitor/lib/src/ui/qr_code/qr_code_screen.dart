@@ -1,3 +1,6 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:feb24_pro_visitor/src/service/location_service.dart';
 import 'package:feb24_pro_visitor/src/service/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +8,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 class QrCodeScreen extends StatelessWidget {
   final userService = UserService();
+  final locationService = LocationService();
 
   QrCodeScreen({super.key});
 
@@ -81,12 +85,73 @@ class QrCodeScreen extends StatelessWidget {
                   ),
                 ), //TODO update route once overview page exists
                 const Spacer(flex: 3),
-                QrImageView(
-                  backgroundColor: Colors.white,
-                  data: user.uid,
-                  size: 350,
+                StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc(user.uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    Map<String, dynamic>? information = snapshot.data?.data();
+                    if (information?['current-location'] == null) {
+                      return QrImageView(
+                        backgroundColor: Colors.white,
+                        data: user.uid,
+                        size: 350,
+                      );
+                    } else {
+                      return FutureBuilder(
+                        future: locationService
+                            .getLocation(information?['current-location']),
+                        builder: (context, snapshot) {
+                          Map<String, dynamic>? location = snapshot.data;
+                          return Container(
+                              width: 334,
+                              height: 235,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                border: Border.all(
+                                  color: const Color.fromRGBO(
+                                    250,
+                                    249,
+                                    246,
+                                    1,
+                                  ),
+                                ),
+                              ),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Text(
+                                    "You're in!",
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(
+                                        250,
+                                        249,
+                                        246,
+                                        1,
+                                      ),
+                                      fontFamily: 'Avenir',
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
+                                  Text(
+                                    location?['name'] ?? '',
+                                    style: TextStyle(
+                                      color: theme.colorScheme.primary,
+                                      fontFamily: 'Avenir',
+                                      fontSize: 36,
+                                      fontWeight: FontWeight.w900,
+                                    ),
+                                  ),
+                                ],
+                              ));
+                        },
+                      );
+                    }
+                  },
                 ),
-
                 const Spacer(flex: 8),
                 SizedBox(
                   width: 150,

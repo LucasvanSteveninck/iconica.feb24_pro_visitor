@@ -32,9 +32,10 @@ class QrCodeScreen extends StatelessWidget {
                 Text(
                   'Hi ${snapshot.data!['fullname']}',
                   style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontFamily: 'Avenir',
+                    color: Color.fromRGBO(250, 249, 246, 1),
+                    fontWeight: FontWeight.w800,
+                    fontSize: 28,
                   ),
                 ),
                 const Spacer(flex: 1),
@@ -44,7 +45,10 @@ class QrCodeScreen extends StatelessWidget {
                     const Text(
                       'Your score is',
                       style: TextStyle(
-                        color: Colors.white,
+                        fontFamily: 'Avenir',
+                        color: Color.fromRGBO(250, 249, 246, 1),
+                        fontWeight: FontWeight.w400,
+                        fontSize: 16,
                       ),
                     ),
                     const Spacer(flex: 1),
@@ -56,7 +60,8 @@ class QrCodeScreen extends StatelessWidget {
                         style: TextStyle(
                           color: theme.colorScheme.primary,
                           fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Avenir',
+                          fontWeight: FontWeight.w800,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -76,28 +81,15 @@ class QrCodeScreen extends StatelessWidget {
                   ),
                 ), //TODO update route once overview page exists
                 const Spacer(flex: 3),
-                Container(
-                  width: 400,
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('qr-outline.png'), fit: BoxFit.fill),
-                  ),
-                  child: Center(
-                    child: SizedBox(
-                      width: 350,
-                      height: 350,
-                      child: QrImageView(
-                        backgroundColor: Colors.white,
-                        data: user.uid,
-                      ),
-                    ),
-                  ),
+                QrImageView(
+                  backgroundColor: Colors.white,
+                  data: user.uid,
+                  size: 350,
                 ),
 
                 const Spacer(flex: 8),
                 SizedBox(
-                  width: 200,
+                  width: 150,
                   child: TextButton(
                       onPressed: () {
                         FirebaseAuth.instance.signOut();
@@ -107,13 +99,15 @@ class QrCodeScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.logout,
-                            color: Colors.white,
+                            color: Color.fromRGBO(250, 249, 246, 1),
                           ),
                           Text(
                             'Log out',
                             style: TextStyle(
-                              color: Colors.white,
-                            ),
+                                color: Color.fromRGBO(250, 249, 246, 1),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 16,
+                                fontFamily: 'Avenir'),
                           ),
                         ],
                       )),

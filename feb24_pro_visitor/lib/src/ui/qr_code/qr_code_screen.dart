@@ -13,6 +13,7 @@ class QrCodeScreen extends StatelessWidget {
     User? user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception(); //TODO REROUTE
     NavigatorState navigatorState = Navigator.of(context);
+    ThemeData theme = Theme.of(context);
     return Scaffold(
         body: FutureBuilder(
       future: userService.getUser(user.uid),
@@ -24,28 +25,71 @@ class QrCodeScreen extends StatelessWidget {
         } else {
           if (snapshot.data == null) throw Exception();
           return Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Hello ${snapshot.data!['fullname']}', style: const TextStyle(color: Colors.white)),
-              Text('Your score is ${snapshot.data!['score']}', style: const TextStyle(color: Colors.white)),
-              TextButton(
-                onPressed: () =>
-                    navigatorState.pushReplacementNamed('/overview'),
-                child: const Text('Go to overview >'),
-              ), //TODO update route once overview page exists
-              QrImageView(data: user.uid, size: 800),
-              ElevatedButton(
-                  onPressed: () {
-                    FirebaseAuth.instance.signOut();
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              Text(
+                'Hi ${snapshot.data!['fullname']}',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                ),
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(
-                        Icons.logout,
+                      const Text(
+                        'Your score is',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
-                      Text('Log out')
+                      Text(
+                        '${snapshot.data!['score']}',
+                        style: TextStyle(
+                          color: theme.colorScheme.primary,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ],
-                  )),
+                  ),
+                  TextButton(
+                    onPressed: () =>
+                        navigatorState.pushReplacementNamed('/overview'),
+                    child: Text(
+                      'Go to overview >',
+                      style: TextStyle(
+                          color: Colors.grey[700],
+                          decoration: TextDecoration.underline,
+                          decorationColor: Colors.grey[700]),
+                    ),
+                  ), //TODO update route once overview page exists
+                ],
+              ),
+              QrImageView(
+                data: user.uid,
+                size: 400,
+                backgroundColor: Colors.white,
+              ),
+              SizedBox(
+                width: 200,
+                child: TextButton(
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                    },
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Icon(
+                          Icons.logout,
+                        ),
+                        Text('Log out')
+                      ],
+                    )),
+              ),
             ],
           );
         }

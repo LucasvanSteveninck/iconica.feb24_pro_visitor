@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Your App Title',
       theme: customTheme,
-      initialRoute: '/splash',
+      initialRoute: '/',
       routes: {
         '/': (context) => QrCodeScreen(),
         '/splash': (context) => const SplashScreen(),
